@@ -15,8 +15,8 @@
 
 ## Dashboard Preview
 
-![Arogya Dashboard](https://raw.githubusercontent.com/Karthik-bhandarkar/agent-Frontend/main/public/dashboard-preview.png)
-*(To update this screenshot, replace `public/dashboard-preview.png` in the repository)*
+![Arogya Dashboard](./public/dashboard-preview.jpeg)
+*(To update this screenshot, replace `public/dashboard-preview.jpeg` in the repository)*
 
 
 ## What It Does

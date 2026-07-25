@@ -6,6 +6,7 @@
  */
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { ROUTES } from '../constants/routes';
 
 const GoogleCallBackPage = () => {
   const location = useLocation();
@@ -47,11 +48,11 @@ const GoogleCallBackPage = () => {
       // For now, redirect to profile-setup is safe.
 
       // Redirect
-      window.location.href = '/profile-setup';
+      window.location.href = ROUTES.PROFILE_SETUP;
     } else {
       console.error("Missing token in Google Callback");
       // If invalid callback, redirect to login
-      window.location.href = '/login?error=google_auth_failed';
+      window.location.href = `${ROUTES.LOGIN}?error=google_auth_failed`;
     }
   }, [location.search]);
 

@@ -8,6 +8,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Brain, ArrowRight, Heart, Activity } from 'lucide-react';
 import { colors, gradients } from '../theme/colors';
+import { ROUTES } from '../constants/routes';
 
 const LandingPage = () => {
   return (
@@ -55,7 +56,7 @@ const LandingPage = () => {
           </div>
         </div>
         <div style={{ display: 'flex', gap: '1rem' }}>
-          <Link to="/login">
+          <Link to={ROUTES.LOGIN} style={{ textDecoration: 'none' }}>
             <button style={{
               padding: '0.5rem 1.5rem',
               background: 'transparent',
@@ -67,7 +68,7 @@ const LandingPage = () => {
               Sign In
             </button>
           </Link>
-          <Link to="/signup">
+          <Link to={ROUTES.SIGNUP} style={{ textDecoration: 'none' }}>
             <button style={{
               padding: '0.5rem 1.5rem',
               background: gradients.primary,
@@ -137,7 +138,7 @@ const LandingPage = () => {
           </div>
         </div>
 
-        <Link to="/signup" style={{ textDecoration: 'none' }}>
+        <Link to={ROUTES.SIGNUP} style={{ textDecoration: 'none' }}>
           <button style={{
             padding: '1rem 3rem',
             background: gradients.primary,

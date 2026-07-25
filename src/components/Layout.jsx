@@ -8,6 +8,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Home, History, Download } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { colors } from '../theme/colors';
+import { ROUTES } from '../constants/routes';
 
 /**
  * Internal PWA Install Prompt Component.
@@ -94,8 +95,8 @@ const Layout = ({ children }) => {
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
   const navItems = [
-    { icon: <Home size={20} />, label: 'Dashboard', path: '/dashboard' },
-    { icon: <History size={20} />, label: 'History', path: '/history' },
+    { icon: <Home size={20} />, label: 'Dashboard', path: ROUTES.DASHBOARD },
+    { icon: <History size={20} />, label: 'History', path: ROUTES.HISTORY },
   ];
 
   return (

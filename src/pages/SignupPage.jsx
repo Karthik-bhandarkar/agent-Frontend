@@ -9,6 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { User, Mail, Lock, ArrowRight, Brain } from "lucide-react";
 import { colors, gradients } from "../theme/colors";
 import { API_BASE_URL } from "../api/client";
+import { ROUTES } from "../constants/routes";
 
 const SignupPage = () => {
   const navigate = useNavigate();
@@ -66,7 +67,7 @@ const SignupPage = () => {
       );
 
       console.log("✅ Signup success, forcing redirect to /profile-setup");
-      window.location.href = "/profile-setup";
+      window.location.href = ROUTES.PROFILE_SETUP;
     } catch (err) {
       console.error("Signup error:", err);
       setError(err.message || "Network error. Check if backend is running.");
@@ -396,7 +397,7 @@ const SignupPage = () => {
         >
           Already have an account?{" "}
           <Link
-            to="/login"
+            to={ROUTES.LOGIN}
             style={{
               color: colors.primary[400],
               textDecoration: "none",

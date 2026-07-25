@@ -7,6 +7,7 @@ import React from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Brain, MessageSquare, History, LogOut, User, Home } from 'lucide-react';
 import { colors, gradients } from '../theme/colors';
+import { ROUTES } from '../constants/routes';
 
 /**
  * Navbar Component.
@@ -29,7 +30,7 @@ const Navbar = () => {
     localStorage.removeItem('profile_completed');
     
     // Redirect to login
-    navigate('/login');
+    navigate(ROUTES.LOGIN);
   };
 
   const isActive = (path) => {
@@ -59,7 +60,7 @@ const Navbar = () => {
       }}>
         {/* Logo */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-          <Link to="/dashboard" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <Link to={ROUTES.DASHBOARD} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <div style={{
               background: gradients.primary,
               borderRadius: '12px',

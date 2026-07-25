@@ -1,4 +1,9 @@
 // src/pages/HistoryPage.jsx
+/**
+ * @fileoverview Conversation History Page.
+ * Rendered at route: `/history`.
+ * On mount, fetches the user's past conversation turns from the backend.
+ */
 import React, { useState } from 'react';
 import { History, Calendar, Clock, User, Bot, Trash2, MessageSquare, ChevronDown, ChevronUp, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';

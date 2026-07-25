@@ -1,4 +1,9 @@
-// src/pages/WellnessAssistantPage.jsx - UPDATED WITH REAL YOUTUBE LINKS
+// src/pages/WellnessAssistantPage.jsx
+/**
+ * @fileoverview Wellness Assistant Page.
+ * Rendered at route: `/assistant`.
+ * Displays a curated list of static wellness videos; loads no external data on mount.
+ */
 import React, { useState } from 'react';
 import { Brain, Heart, Activity, Target, Youtube, ExternalLink, PlayCircle, Dumbbell, Apple, Moon } from 'lucide-react';
 import { colors } from '../theme/colors';

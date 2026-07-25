@@ -1,4 +1,8 @@
 // frontend/src/components/BmiCalculator.jsx
+/**
+ * @fileoverview Standalone BMI Calculator widget.
+ * Calculates BMI from weight and height, displaying the numeric value and category.
+ */
 import React, { useState } from "react";
 
 function bmiCategory(bmi) {
@@ -9,6 +13,14 @@ function bmiCategory(bmi) {
   return "Obesity";
 }
 
+/**
+ * BmiCalculator Component.
+ * 
+ * @param {Object} props
+ * @param {string|number} [props.initialKg=""] - Initial weight in kilograms.
+ * @param {string|number} [props.initialCm=""] - Initial height in centimeters.
+ * @returns {JSX.Element}
+ */
 export default function BmiCalculator({ initialKg = "", initialCm = "" }) {
   const [weight, setWeight] = useState(initialKg);
   const [heightCm, setHeightCm] = useState(initialCm);

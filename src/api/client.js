@@ -1,6 +1,10 @@
 // src/api/client.js
+/**
+ * @fileoverview Shared Axios instance for backend communication.
+ * Configures the base URL and an interceptor to automatically attach
+ * the JWT token from local storage to every request's Authorization header.
+ */
 import axios from "axios";
-
 // 🔹 Backend base URL (change if your backend runs on another port)
 export const API_BASE_URL = "https://agent-backend-t11g.onrender.com"; // Backend URL
 // 🔹 Preconfigured axios instance for all API calls

@@ -1,4 +1,9 @@
-// src/pages/GoogleCallBackPage.jsx - UPDATED
+// src/pages/GoogleCallBackPage.jsx
+/**
+ * @fileoverview Google OAuth Callback Page.
+ * Rendered at route: `/google-callback`.
+ * On mount, parses URL parameters to extract the JWT and user data, stores them in local storage, and redirects to profile setup.
+ */
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 

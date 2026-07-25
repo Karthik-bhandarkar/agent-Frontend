@@ -1,6 +1,20 @@
 // frontend/src/components/AgentStream.jsx
+/**
+ * @fileoverview Live Agent Reasoning Stream.
+ * Connects to the backend WebSocket and renders real-time agent reasoning logs
+ * as they process the user's query.
+ */
 import React, { useEffect, useState, useRef } from "react";
 
+/**
+ * AgentStream Component.
+ * 
+ * @param {Object} props
+ * @param {string} props.query - The user's chat query to process.
+ * @param {string} [props.token] - Optional JWT token for authentication.
+ * @param {Function} [props.onFinal] - Callback invoked when the final response is received.
+ * @returns {JSX.Element}
+ */
 export default function AgentStream({ query, token, onFinal }) {
   const [events, setEvents] = useState([]); // array of {type, agent, text, time}
   const wsRef = useRef(null);
@@ -9,7 +23,10 @@ export default function AgentStream({ query, token, onFinal }) {
     if (!query) return;
 
     setEvents([]);
-    // build ws url. Use ws:// for dev (http), wss:// for production (https)
+    setEvents([]);
+    
+    // NOTE: Dynamically build WS URL based on current protocol. 
+    // Uses ws:// for local development and wss:// for secure production environments.
     const WS_URL = `${window.location.protocol === "https:" ? "wss" : "ws"}://localhost:8000/ws/process-query`;
     const ws = new WebSocket(WS_URL);
     wsRef.current = ws;
@@ -49,6 +66,8 @@ export default function AgentStream({ query, token, onFinal }) {
     };
 
     return () => {
+      // NOTE: Cleanup effect. Automatically closes the WebSocket connection 
+      // when the component unmounts or when the query changes to prevent memory leaks.
       if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
         wsRef.current.close();
       }

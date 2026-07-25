@@ -1,10 +1,20 @@
 // src/components/Layout.jsx
+/**
+ * @fileoverview Application page chrome.
+ * Provides the main layout shell, including the responsive sidebar navigation,
+ * mobile header, and the internal PWA install prompt logic.
+ */
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Home, History, Download } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { colors } from '../theme/colors';
 
-// PWA Install Prompt Component (Internal)
+/**
+ * Internal PWA Install Prompt Component.
+ * Monitors for the 'beforeinstallprompt' event to show a custom installation banner on mobile devices.
+ * 
+ * @returns {JSX.Element|null} The prompt banner or null if not applicable.
+ */
 const PWAInstallPrompt = () => {
   const [deferredPrompt, setDeferredPrompt] = useState(null);
   const [showPrompt, setShowPrompt] = useState(false);
@@ -13,7 +23,8 @@ const PWAInstallPrompt = () => {
     const handler = (e) => {
       e.preventDefault();
       setDeferredPrompt(e);
-      // Check if mobile (basic check)
+      // NOTE: Mobile detection check. The prompt is currently restricted to
+      // trigger only on devices matching basic mobile user agents.
       const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
       if (isMobile) {
         setShowPrompt(true);
@@ -67,6 +78,13 @@ const PWAInstallPrompt = () => {
   );
 };
 
+/**
+ * Main Layout Component.
+ * 
+ * @param {Object} props
+ * @param {React.ReactNode} props.children - The main page content to render inside the layout shell.
+ * @returns {JSX.Element}
+ */
 const Layout = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const navigate = useNavigate();
@@ -196,6 +214,14 @@ const Layout = ({ children }) => {
 };
 
 
+/**
+ * FullscreenCenter Wrapper Component.
+ * Utility wrapper to perfectly center its children on a full-height dark slate background.
+ * 
+ * @param {Object} props
+ * @param {React.ReactNode} props.children - The child components to center.
+ * @returns {JSX.Element}
+ */
 export const FullscreenCenter = ({ children }) => (
   <div style={{
     minHeight: '100vh',

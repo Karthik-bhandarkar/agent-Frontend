@@ -1,4 +1,9 @@
 // src/pages/SignupPage.jsx
+/**
+ * @fileoverview Signup Page.
+ * Rendered at route: `/signup`.
+ * Provides the user registration form; loads no external data on mount.
+ */
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { User, Mail, Lock, ArrowRight, Brain } from "lucide-react";

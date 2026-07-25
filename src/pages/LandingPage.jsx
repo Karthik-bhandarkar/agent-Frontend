@@ -1,4 +1,9 @@
-// src/pages/LandingPage.jsx - UPDATED
+// src/pages/LandingPage.jsx
+/**
+ * @fileoverview Landing Page.
+ * Rendered at route: `/`.
+ * Displays the static marketing hero section; loads no dynamic data on mount.
+ */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Brain, ArrowRight, Heart, Activity } from 'lucide-react';

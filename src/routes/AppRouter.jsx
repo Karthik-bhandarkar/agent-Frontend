@@ -1,4 +1,9 @@
-// src/routes/AppRouter.jsx - UPDATED VERSION
+// src/routes/AppRouter.jsx
+/**
+ * @fileoverview Main Application Router.
+ * Defines the complete route table for the application, mapping paths to page components
+ * and wrapping authenticated paths in ProtectedRoute guards.
+ */
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { FullscreenCenter } from "../components/Layout"; // Old Components

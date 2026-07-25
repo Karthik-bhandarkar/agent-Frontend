@@ -1,3 +1,8 @@
+// src/main.jsx
+/**
+ * @fileoverview Application Entry Point.
+ * Vite/React entry point that injects global CSS resets and mounts the App (or AppRouter) to the DOM.
+ */
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';

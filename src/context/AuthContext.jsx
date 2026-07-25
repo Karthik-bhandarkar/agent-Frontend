@@ -1,8 +1,20 @@
 // src/context/AuthContext.jsx
+/**
+ * @fileoverview Global authentication context.
+ * Holds the logged-in user, token, and loading state. Persists state to local
+ * storage and exposes actions for login, logout, and updating the user's profile status.
+ */
 import React, { createContext, useContext, useState } from "react";
 
 const AuthContext = createContext(null);
 
+/**
+ * Provider component that wraps the application to supply auth state.
+ * 
+ * @param {Object} props
+ * @param {React.ReactNode} props.children - The child components to render.
+ * @returns {JSX.Element} The AuthContext provider wrapping children.
+ */
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
     try {
@@ -20,6 +32,12 @@ export const AuthProvider = ({ children }) => {
   // login(token, userData)
   // inside AuthProvider in src/context/AuthContext.jsx, replace login implementation with:
 
+  /**
+   * Logs in a user by saving their token and profile data.
+   * 
+   * @param {string} jwtToken - The JWT authentication token.
+   * @param {Object|string} userData - The user's profile object (or JSON string).
+   */
 const login = (jwtToken, userData = null) => {
   // Save token
   if (jwtToken) {
@@ -62,6 +80,9 @@ const login = (jwtToken, userData = null) => {
 };
 
 
+  /**
+   * Logs out the user by clearing state and local storage.
+   */
   const logout = () => {
     setToken(null);
     setUser(null);
@@ -71,6 +92,9 @@ const login = (jwtToken, userData = null) => {
     localStorage.removeItem("profileCompleted");
   };
 
+  /**
+   * Updates state and storage to mark the user's profile as completed.
+   */
   const markProfileCompleted = () => {
     setProfileCompleted(true);
     localStorage.setItem("profileCompleted", "true");
@@ -89,4 +113,11 @@ const login = (jwtToken, userData = null) => {
   );
 };
 
+/**
+ * Hook to consume the AuthContext.
+ * 
+ * @returns {Object} The auth context value (user, token, profileCompleted, login, logout, markProfileCompleted).
+ * @throws {Error} Technically does not throw currently, but will return null if used outside a provider.
+ * Context value changes (like login/logout) will trigger a re-render in consuming components.
+ */
 export const useAuth = () => useContext(AuthContext);

@@ -1,4 +1,9 @@
-// frontend/src/App.jsx
+// src/App.jsx
+/**
+ * @fileoverview Application Root Component.
+ * Composes global providers (e.g., Auth, Toaster) around the router.
+ * (Note: Current active composition happens in main.jsx; this file serves as an alternate/legacy entry).
+ */
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import LoginPage from './pages/LoginPage';

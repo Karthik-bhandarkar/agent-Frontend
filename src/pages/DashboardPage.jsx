@@ -1,4 +1,9 @@
-// src/pages/DashboardPage.jsx - FINAL VERSION (Auto BMI Status + Chat UI)
+// src/pages/DashboardPage.jsx
+/**
+ * @fileoverview Dashboard Page.
+ * Rendered at route: `/dashboard`.
+ * On mount, loads the user from local storage and fetches their health profile from the backend.
+ */
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, Bot, User, Sparkles, Brain, Activity, Heart, Zap, Droplets, Footprints, Paperclip } from 'lucide-react';
 import { colors, gradients } from '../theme/colors';

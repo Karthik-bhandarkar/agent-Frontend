@@ -1,3 +1,9 @@
+// src/pages/LoginPage.jsx
+/**
+ * @fileoverview Login Page.
+ * Rendered at route: `/login`.
+ * Provides the user authentication form; loads no external data on mount.
+ */
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Mail, Lock, ArrowRight, Brain, Chrome } from "lucide-react";

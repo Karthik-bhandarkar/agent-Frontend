@@ -1,3 +1,9 @@
+// src/pages/ProfileSetupPage.jsx
+/**
+ * @fileoverview Profile Setup Page.
+ * Rendered at route: `/profile-setup`.
+ * On mount, loads the user session from context/storage to construct the multi-step onboarding form.
+ */
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { User, Scale, Ruler, Moon, Activity, Heart, Target } from "lucide-react";

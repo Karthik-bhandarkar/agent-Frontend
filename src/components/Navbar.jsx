@@ -1,9 +1,18 @@
 // src/components/Navbar.jsx
+/**
+ * @fileoverview Application top navigation bar (Page Chrome).
+ * Provides branding, top-level navigation links, user profile snippet, and logout functionality.
+ */
 import React from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Brain, MessageSquare, History, LogOut, User, Home } from 'lucide-react';
 import { colors, gradients } from '../theme/colors';
 
+/**
+ * Navbar Component.
+ * 
+ * @returns {JSX.Element}
+ */
 const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -13,7 +22,8 @@ const Navbar = () => {
   const user = storedUser ? JSON.parse(storedUser) : null;
 
   const handleLogout = () => {
-    // Clear all auth data
+    // NOTE: Hard logout logic. This component manually strips all auth markers
+    // from localStorage before redirecting.
     localStorage.removeItem('user');
     localStorage.removeItem('current_user_id');
     localStorage.removeItem('profile_completed');

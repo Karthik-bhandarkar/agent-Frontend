@@ -5,6 +5,8 @@
  * (Note: Current active composition happens in main.jsx; this file serves as an alternate/legacy entry).
  */
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
+import { ROUTES } from './constants/routes';
 import { useEffect, useState } from 'react';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
@@ -53,10 +55,10 @@ function App() {
             profileComplete === false ? (
               <ProfileSetupPage />
             ) : (
-              <Navigate to="/dashboard" replace />
+              <Navigate to={ROUTES.DASHBOARD} replace />
             )
           ) : (
-            <Navigate to="/login" replace />
+            <Navigate to={ROUTES.LOGIN} replace />
           )
         } />
         
@@ -64,7 +66,7 @@ function App() {
           isAuthenticated ? (
             <Dashboard />
           ) : (
-            <Navigate to="/login" replace />
+            <Navigate to={ROUTES.LOGIN} replace />
           )
         } />
         
@@ -72,12 +74,12 @@ function App() {
         <Route path="/" element={
           isAuthenticated ? (
             profileComplete === false ? (
-              <Navigate to="/profile-setup" replace />
+              <Navigate to={ROUTES.PROFILE_SETUP} replace />
             ) : (
-              <Navigate to="/dashboard" replace />
+              <Navigate to={ROUTES.DASHBOARD} replace />
             )
           ) : (
-            <Navigate to="/login" replace />
+            <Navigate to={ROUTES.LOGIN} replace />
           )
         } />
       </Routes>

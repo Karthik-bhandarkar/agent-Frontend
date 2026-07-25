@@ -5,14 +5,15 @@
  * Displays a static 404 error message.
  */
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import { ROUTES } from '../constants/routes';
 
 const NotFoundPage = () => {
   return (
     <div className="card">
       <h2>Page not found</h2>
       <p className="text-muted">The page you are looking for doesn&apos;t exist.</p>
-      <Link to="/">
+      <Link to={ROUTES.HOME}>
         <button className="btn btn-primary" style={{ marginTop: "12px" }}>
           Go Home
         </button>

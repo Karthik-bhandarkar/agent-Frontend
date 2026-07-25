@@ -9,6 +9,7 @@ import { Routes, Route } from "react-router-dom";
 import { FullscreenCenter } from "../components/Layout"; // Old Components
 import Layout from "../components/Layout"; // New Responsive Layout
 import ProtectedRoute from "../components/ProtectedRoute";
+import { ROUTES } from "../constants/routes";
 
 import LandingPage from "../pages/LandingPage.jsx";
 import SignupPage from "../pages/SignupPage.jsx";
@@ -25,7 +26,7 @@ const AppRouter = () => {
     <Routes>
       {/* Public pages */}
       <Route
-        path="/"
+        path={ROUTES.HOME}
         element={
           <FullscreenCenter>
             <LandingPage />
@@ -33,7 +34,7 @@ const AppRouter = () => {
         }
       />
       <Route
-        path="/signup"
+        path={ROUTES.SIGNUP}
         element={
           <FullscreenCenter>
             <SignupPage />
@@ -41,7 +42,7 @@ const AppRouter = () => {
         }
       />
       <Route
-        path="/login"
+        path={ROUTES.LOGIN}
         element={
           <FullscreenCenter>
             <LoginPage />
@@ -49,7 +50,7 @@ const AppRouter = () => {
         }
       />
       <Route
-        path="/google-callback"
+        path={ROUTES.GOOGLE_CALLBACK}
         element={
           <FullscreenCenter>
             <GoogleCallBackPage />
@@ -61,7 +62,7 @@ const AppRouter = () => {
 
       {/* Profile setup: user must be logged in, but profile can be incomplete */}
       <Route
-        path="/profile-setup"
+        path={ROUTES.PROFILE_SETUP}
         element={
           <ProtectedRoute>
             <ProfileSetupPage />
@@ -70,7 +71,7 @@ const AppRouter = () => {
       />
 
       <Route
-        path="/dashboard"
+        path={ROUTES.DASHBOARD}
         element={
           <ProtectedRoute requireProfileComplete>
             <Layout>
@@ -81,7 +82,7 @@ const AppRouter = () => {
       />
 
       <Route
-        path="/assistant"
+        path={ROUTES.ASSISTANT}
         element={
           <ProtectedRoute requireProfileComplete>
             <Layout>
@@ -92,7 +93,7 @@ const AppRouter = () => {
       />
 
       <Route
-        path="/history"
+        path={ROUTES.HISTORY}
         element={
           <ProtectedRoute requireProfileComplete>
             <Layout>
@@ -120,7 +121,7 @@ const AppRouter = () => {
               </h1>
               <p>
                 Return to{" "}
-                <a href="/" style={{ color: "#60a5fa" }}>
+                <a href={ROUTES.HOME} style={{ color: "#60a5fa" }}>
                   homepage
                 </a>
               </p>

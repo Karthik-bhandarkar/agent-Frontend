@@ -6,6 +6,7 @@
  */
 import React, { useState } from 'react';
 import { History, Calendar, Clock, User, Bot, Trash2, MessageSquare, ChevronDown, ChevronUp, ArrowRight } from 'lucide-react';
+import { ROUTES } from '../constants/routes';
 import { useNavigate } from 'react-router-dom';
 import { colors } from '../theme/colors';
 import { API_BASE_URL } from '../api/client';
@@ -64,7 +65,7 @@ const HistoryPage = () => {
         reasoning_logs: conv.reasoning_logs
       }
     ];
-    navigate('/dashboard', { state: { initialMessages: restoredMessages } });
+    navigate(ROUTES.DASHBOARD, { state: { initialMessages: restoredMessages } });
   };
 
   React.useEffect(() => {

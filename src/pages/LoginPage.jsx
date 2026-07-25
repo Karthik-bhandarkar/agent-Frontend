@@ -10,6 +10,7 @@ import { Mail, Lock, ArrowRight, Brain, Chrome } from "lucide-react";
 import { colors, gradients } from "../theme/colors";
 import { API_BASE_URL } from "../api/client";
 import { useAuth } from "../hooks/useAuth";
+import { ROUTES } from "../constants/routes";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -126,8 +127,8 @@ const LoginPage = () => {
 
       // Navigate appropriately
       // Force hard reload to ensure AuthContext and ProtectedRoute pick up the new localstorage state
-      if (completed) window.location.href = "/dashboard";
-      else window.location.href = "/profile-setup";
+      if (completed) window.location.href = ROUTES.DASHBOARD;
+      else window.location.href = ROUTES.PROFILE_SETUP;
     } catch (err) {
       console.error("Login error:", err);
       setError(err.message || "Network error. Check if backend is running.");
@@ -422,7 +423,7 @@ const LoginPage = () => {
         >
           Don't have an account?{" "}
           <Link
-            to="/signup"
+            to={ROUTES.SIGNUP}
             style={{
               color: colors.primary[400],
               textDecoration: "none",

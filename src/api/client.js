@@ -5,8 +5,10 @@
  * the JWT token from local storage to every request's Authorization header.
  */
 import axios from "axios";
-// 🔹 Backend base URL (change if your backend runs on another port)
-export const API_BASE_URL = "https://agent-backend-t11g.onrender.com"; // Backend URL
+
+// 🔹 Production Backend URL — https://agent-backend-t11g.onrender.com
+// 🔹 For local dev, change this to: http://localhost:8000
+export const API_BASE_URL = "https://agent-backend-t11g.onrender.com";
 // 🔹 Preconfigured axios instance for all API calls
 const client = axios.create({
   baseURL: API_BASE_URL,

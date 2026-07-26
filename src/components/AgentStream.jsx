@@ -5,6 +5,7 @@
  * as they process the user's query.
  */
 import React, { useEffect, useState, useRef } from "react";
+import { API_BASE_URL } from "../api/client";
 
 /**
  * AgentStream Component.
@@ -23,11 +24,11 @@ export default function AgentStream({ query, token, onFinal }) {
     if (!query) return;
 
     setEvents([]);
-    setEvents([]);
     
-    // NOTE: Dynamically build WS URL based on current protocol. 
-    // Uses ws:// for local development and wss:// for secure production environments.
-    const WS_URL = `${window.location.protocol === "https:" ? "wss" : "ws"}://localhost:8000/ws/process-query`;
+    // NOTE: Dynamically build WS URL from the configured API_BASE_URL.
+    // Strips http/https and replaces with ws/wss for the WebSocket protocol.
+    const wsBase = API_BASE_URL.replace(/^http/, "ws");
+    const WS_URL = `${wsBase}/ws/process-query`;
     const ws = new WebSocket(WS_URL);
     wsRef.current = ws;
 

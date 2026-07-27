@@ -3,9 +3,10 @@
  * @fileoverview Login Page.
  * Rendered at route: `/login`.
  * Provides the user authentication form; loads no external data on mount.
+ * Also reads ?google_error and ?error URL params to display OAuth error messages.
  */
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Mail, Lock, ArrowRight, Brain, Chrome } from "lucide-react";
 import { colors, gradients } from "../theme/colors";
 import { API_BASE_URL } from "../api/client";
@@ -14,6 +15,7 @@ import { ROUTES } from "../constants/routes";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { login } = useAuth();
 
   const [formData, setFormData] = useState({
@@ -21,7 +23,35 @@ const LoginPage = () => {
     password: "",
   });
   const [loading, setLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
   const [error, setError] = useState("");
+
+  // Read Google OAuth error params from URL on mount
+  // e.g. /login?google_error=access_denied (user cancelled)
+  // e.g. /login?google_error=token_exchange_failed (backend error)
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const googleError = params.get("google_error");
+    const generalError = params.get("error");
+
+    if (googleError) {
+      const errorMessages = {
+        access_denied: "Google sign-in was cancelled. Please try again.",
+        token_exchange_failed: "Failed to connect with Google. Please try again.",
+        user_info_failed: "Could not retrieve your Google account info. Please try again.",
+        no_email_permission: "Please grant email access to sign in with Google.",
+        server_misconfigured: "Google sign-in is temporarily unavailable. Please use email login.",
+        database_error: "Account setup failed. Please try again.",
+        token_generation_failed: "Authentication error. Please try again.",
+        timeout: "Google sign-in timed out. Please try again.",
+        auth_failed: "Google sign-in failed. Please try again.",
+        missing_code: "Google sign-in was interrupted. Please try again.",
+      };
+      setError(errorMessages[googleError] || `Google sign-in error: ${googleError.replace(/_/g, " ")}`);
+    } else if (generalError) {
+      setError("Authentication failed. Please try again.");
+    }
+  }, [location.search]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -138,6 +168,11 @@ const LoginPage = () => {
   };
 
   const handleGoogleLogin = () => {
+    // Clear any existing errors and show loading state
+    setError("");
+    setGoogleLoading(true);
+    // Redirect browser to backend's Google OAuth initiation endpoint
+    // The backend will redirect to Google, which will call back to /auth/google/callback
     window.location.href = `${API_BASE_URL}/auth/google/login`;
   };
 
@@ -391,25 +426,29 @@ const LoginPage = () => {
         <button
           type="button"
           onClick={handleGoogleLogin}
+          disabled={googleLoading || loading}
           style={{
             width: "100%",
             padding: "0.875rem",
-            background: "rgba(255, 255, 255, 0.05)",
-            color: colors.neutral[300],
+            background: googleLoading
+              ? "rgba(255, 255, 255, 0.02)"
+              : "rgba(255, 255, 255, 0.05)",
+            color: googleLoading ? colors.neutral[500] : colors.neutral[300],
             border: `1px solid ${colors.neutral[700]}`,
             borderRadius: "10px",
             fontSize: "0.95rem",
             fontWeight: "500",
-            cursor: "pointer",
+            cursor: googleLoading || loading ? "not-allowed" : "pointer",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             gap: "0.75rem",
             transition: "all 0.2s",
+            opacity: googleLoading ? 0.6 : 1,
           }}
         >
           <Chrome size={20} />
-          Continue with Google
+          {googleLoading ? "Redirecting to Google..." : "Continue with Google"}
         </button>
 
         {/* Sign Up Link */}
